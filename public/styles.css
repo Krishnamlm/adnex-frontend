@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body {
+  min-height:100vh;
+
+  background-size:400% 400%;
+  animation:bgGradient 15s ease infinite;
+
+  align-items:center;
+  justify-content:center;
+}
+
+section { /* This targets the <section> element that wraps your .signin div */
+    flex-grow: 1; /* Allows this section to fill all available vertical space */
+    display: flex; /* Make this section a flex container */
+    margin-top: 120px;
+    margin-bottom: 30px;
+    justify-content: center; /* Horizontally centers its child (.signin) */
+    align-items: center;   /* Vertically centers its child (.signin) */
+    width: 100%; /* Ensure it takes full width to allow horizontal centering */
+}
+@keyframes bgGradient {
+  0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}
+}
+section .signin .content {
+  position:relative; /* Keep this, as it's crucial for absolute positioning of the video */
+  width:300px; /* Reduced width */
+  padding:20px 20px; /* Reduced padding */
+  /* REMOVE background: linear-gradient(to bottom, #0f0035, #2f0178); if you want video as the only background */
+  /* KEEP backdrop-filter: blur(20px) saturate(150%); */ /* This will now apply to the video */
+  backdrop-filter: blur(20px) saturate(150%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  overflow:hidden; /* Important: Hides video content outside the border-radius */
+  animation:fadeIn 1s ease;
+  /* Add this to stack form content above the video */
+  display: flex; /* Make content a flex container */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.content-background-video {
+  position: absolute; /* Position relative to its parent (.content) */
+  top: 0;
+  left: 0;
+  width: 100%;    /* Make it span the full width of its parent */
+  height: 110%;   /* Make it span the full height of its parent */
+  object-fit: cover; /* Ensures the video covers the area without distortion */
+  z-index: -1;    /* Sends the video behind all other content inside .content */
+  border-radius: inherit; /* Inherit parent's border-radius for smooth corners */
+  /* Optional: Add a subtle overlay or filter if needed */
+  /* filter: brightness(0.7); */
+}
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(-20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+.signin .content::before, .signin .content::after {
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  opacity:0.7;
+  animation:float 4s ease-in-out infinite alternate;
+}
+
+
+@keyframes float {
+  from {transform:translateY(0) scale(0.9);} to {transform:translateY(20px) scale(1);}
+}
+
+.signin .content h2 {
+  color:#fff; text-align:center; margin-bottom:20px; letter-spacing:1px;
+}
+.form .inputBox {
+  position:relative; margin-bottom:25px;
+}
+.form .inputBox input {
+  width:100%; padding:12px 0; background:transparent;
+  border:none; border-bottom:1px solid rgba(255,255,255,0.4);
+  color:#eee; outline:none;
+  transition:border-color .3s;
+}
+.form .inputBox input:focus {
+  border-bottom:1px solid #1a73e8;
+}
+.form .inputBox i {
+  position:absolute; top:12px; left:0;
+  font-style:normal; color:rgba(255,255,255,0.7);
+  pointer-events:none;
+  transition:transform .3s, font-size .3s;
+}
+.form .inputBox input:focus + i,
+.form .inputBox input:valid + i {
+  transform: translateY(-20px);
+  font-size:0.75rem;
+}
+.links {
+  display:flex; justify-content:space-between;
+  font-size:0.85rem; color:#aaa; margin-bottom:20px;
+}
+.links a { color:#8ab4f8; text-decoration:none; transition:opacity .3s; }
+.links a:hover { opacity:0.8; }
+
+.form input[type="submit"] {
+  width:100%; padding:12px; border:none; border-radius:6px;
+  background:#eeaf02; color:#fff; font-weight:500; cursor:pointer;
+  transition:background .3s, transform .2s;
+}
+.form input[type="submit"]:hover {
+  background:#09ddf0; transform:translateY(-2px);
+}
+
+.social-login {
+  text-align:center; color:#ddd; 
+  margin-right: 0px;
+  width: 206px;
+}
+.social-login p { margin-bottom:5px; margin-left: 0px; }
+.social-icons a {
+	height: 6.5vh;
+  margin:0 5px; color:#fff; font-size:1.2rem;
+  padding-right: 30px;
+  background:rgba(255,255,255,0.1); padding:10px;
+  border-radius: 6px; display:inline-block;
+  transition:transform .3s, box-shadow .3s;
+}
+.social-icons a:hover {
+  transform:translateY(-4px);
+  
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+.social-icons .google { background:#ffffff; padding-top: 0px; width: 295px;  }
+.social-icons .facebook { background:#4267b2; padding-top: 8px;}
+.social-icons .twitter { background:#1da1f2; padding-top: 8px; }
+
+@media (max-width :768px) {
+
+  .content-background-video {
+  position: absolute; /* Position relative to its parent (.content) */
+  top: 0;
+  left: 0;
+  width: 100%;    /* Make it span the full width of its parent */
+  height: 70%;   /* Make it span the full height of its parent */
+  object-fit: cover; /* Ensures the video covers the area without distortion */
+  z-index: -1;    /* Sends the video behind all other content inside .content */
+  border-radius: inherit; /* Inherit parent's border-radius for smooth corners */
+  /* Optional: Add a subtle overlay or filter if needed */
+  /* filter: brightness(0.7); */
+}
+
+.social-icons .google {
+  background: #ffffff;
+  width: 200px;
+  padding-top: 4px;
+  border-radius: 6px;
+}
+.social-icons a {
+  height: 4.3vh !important;
+  margin:0 8px; color:#fff; font-size:1.2rem;
+  background:rgba(255,255,255,0.1); padding:10px;
+  border-radius:50%; display:inline-block;
+  transition:transform .3s, box-shadow .3s;
+}
+.social-icons a:hover {
+  transform:translateY(-4px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+}

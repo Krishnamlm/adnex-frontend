@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<title>AdNex Technology</title>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<!-- Bootstrap 5 CDN Links -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Owl Carousel CSS Links-->
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl/owl.theme.min.css">
+
+<!-- Custom File's Link -->
+<link rel="stylesheet" href="css/Courses.css">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    
+/* --- Photoshop Hero Banner Section (Version 2 - New Layout) --- */
+.photoshop-hero-banner-v2 {
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    min-height: 90vh; /* Take up more viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(155deg, #0f0f1d, #0a0a14); /* Deeper dark background */
+    border-bottom: 6px solid; /* Thicker border */
+    border-image: linear-gradient(to right, var(--color-blue-start), var(--color-orange-end)) 1;
+    z-index: 10;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8); /* Stronger shadow */
+}
+
+/* Background gradient animation for the section */
+.photoshop-hero-banner-v2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(var(--color-blue-end), 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(var(--color-orange-start), 0.08) 0%, transparent 25%);
+    background-size: 200% 200%;
+    animation: backgroundPan 30s linear infinite alternate;
+    z-index: -1;
+}
+
+/* Inner wrapper for split content */
+.banner-inner-wrapper {
+    margin-bottom: 20px;
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on smaller screens */
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    gap: 40px; /* Space between text and visual areas */
+    padding: 10px 20px; /* Internal padding */
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Side: Text Content */
+.banner-text-content {
+    flex: 1; /* Takes available space */
+    min-width: 350px; /* Minimum width before wrapping */
+    max-width: 600px; /* Max width for readability */
+    text-align: left; /* Align text to left */
+    padding: 0px;
+    padding-top: 0px;
+   
+    position: relative;
+    z-index: 2;
+}
+
+.banner-headline {
+    margin-top: 60px;
+    font-size: 3.4em; /* Large and impactful */
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--color-blue-start), var(--color-orange-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: lightblue;
+    background-clip: text;
+    color: transparent;
+    animation: glowBlue 2.5s infinite alternate;
+    letter-spacing: -1.5px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.1; /* Tighter line height */
+}
+
+.banner-course-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.banner-course-title .sub-line {
+    display: block;
+    font-size: 0.65em;
+    font-weight: 400;
+    color: #b0c4de;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.banner-instructor {
+    font-size: 1.4em;
+    color: #9a9ab9;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.banner-description {
+    font-size: 1.15em;
+    line-height: 1.7;
+    color: var(--color-text-medium);
+    margin-bottom: 35px;
+}
+
+.banner-cta-wrapper {
+    margin-bottom: 20px;
+}
+
+.banner-cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff6b6b, #ee2b60); /* Vibrant red/pink gradient for CTA */
+    color: white;
+    padding: 15px 55px; /* Large, inviting button */
+    border-radius: 60px; /* Super rounded */
+    text-decoration: none;
+    font-size: 0.6em; /* Large font for CTA */
+    font-weight: 700;
+    transition: background 0.5s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7); /* Deep shadow */
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-cta-button::before { /* Shine effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-20deg);
+    transition: transform 0.4s ease-out;
+    z-index: 0;
+}
+
+.banner-cta-button:hover::before {
+    transform: skewX(-20deg) translateX(250%);
+}
+
+.banner-cta-button:hover {
+    background: linear-gradient(45deg, #ee2b60, #ff6b6b);
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    animation: none;
+}
+
+.banner-sub-text p {
+    font-size: 1em;
+    color: #ffcc00; /* Yellow for urgency */
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(255, 204, 0, 0.4);
+    opacity: 0.9;
+}
+
+/* Right Side: Animated Visual Area */
+.banner-visual-area {
+    flex: 1;
+    min-width: 300px;
+    height: 450px; /* Fixed height for visual consistency */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03); /* Subtle glassmorphism background */
+    border-radius: 20px;
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden; /* Crucial to contain floating elements */
+    transform-style: preserve-3d; /* For 3D elements inside */
+    animation: zoomIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 0.8s;
+}
+
+/* Main image inside visual area (if uncommented in HTML) */
+.banner-main-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    object-fit: contain;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transform: translateZ(20px); /* Bring slightly forward in 3D space */
+}
+
+
+/* Individual Abstract Visual Elements */
+.visual-element {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(var(--color-blue-start), 0.7), rgba(var(--color-orange-end), 0.7));
+    filter: blur(15px); /* Soft glow */
+    opacity: 0.6;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.visual-element.visual-circle-1 {
+    width: 150px; height: 150px; border-radius: 50%;
+    top: 10%; left: 15%;
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    box-shadow: 0 0 30px #00f2fe;
+}
+.visual-element.visual-square-2 {
+    width: 120px; height: 120px; border-radius: 10px;
+    bottom: 20%; right: 10%;
+    background: linear-gradient(135deg, #ff8a00, #ff0080);
+    box-shadow: 0 0 30px #ff8a00;
+    transform: rotate(25deg);
+}
+.visual-element.visual-triangle-3 {
+    width: 0; height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 140px solid;
+    border-image: linear-gradient(to bottom, #ee2b60, #ff6b6b) 1;
+    top: 50%; left: 5%;
+    transform: translateY(-50%) rotate(-15deg);
+    filter: blur(10px);
+    opacity: 0.5;
+    box-shadow: 0 0 20px #ee2b60;
+}
+.visual-element.visual-line-4 {
+    width: 200px; height: 5px; border-radius: 5px;
+    top: 30%; right: 5%;
+    background: linear-gradient(90deg, #b0c4de, #6a0dad);
+    box-shadow: 0 0 20px #b0c4de;
+    transform: rotate(45deg);
+}
+
+
+/* Animations for Visual Elements */
+@keyframes animFloatScale {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(10px, 15px) scale(1.05); opacity: 0.8; }
+}
+@keyframes animFloatRotate {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translate(-10px, 10px) rotate(20deg); opacity: 0.8; }
+}
+@keyframes animFloatLine {
+    0%, 100% { transform: translate(0, 0) rotate(45deg); opacity: 0.6; }
+    50% { transform: translate(15px, -5px) rotate(50deg); opacity: 0.8; }
+}
+
+.anim-float-scale { animation: animFloatScale 10s ease-in-out infinite alternate; }
+.anim-float-rotate { animation: animFloatRotate 12s ease-in-out infinite alternate; }
+.anim-float-line { animation: animFloatLine 8s ease-in-out infinite alternate; }
+
+
+/* Responsive Adjustments for New Banner Layout */
+@media (max-width: 992px) {
+    .photoshop-hero-banner-v2 { min-height: 80vh; }
+    .banner-inner-wrapper {  text-align: center; }
+    .banner-text-content { max-width: 80%; padding: 0; }
+    .banner-headline { font-size: 3.5em; letter-spacing: 0; }
+    .banner-course-title { font-size: 2.2em; }
+    .banner-instructor { font-size: 1.2em; }
+    .banner-description { font-size: 1em; }
+    .banner-cta-button { padding: 18px 45px; font-size: 1.4em; }
+    .banner-sub-text p { font-size: 0.9em; }
+
+    .banner-visual-area {
+        width: 90%;
+        height: 350px; /* Adjust height for smaller screens */
+        margin-top: 40px; /* Space when stacked */
+    }
+    .visual-element.visual-circle-1 { width: 120px; height: 120px; }
+    .visual-element.visual-square-2 { width: 100px; height: 100px; }
+    .visual-element.visual-triangle-3 {
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
+        border-bottom: 100px solid;
+    }
+    .visual-element.visual-line-4 { width: 150px; }
+}
+
+@media (max-width: 768px) {
+    .photoshop-hero-banner-v2 { min-height: 70vh; }
+    .banner-headline { font-size: 2.8em; }
+    .banner-course-title { font-size: 1.8em; }
+    .banner-instructor { font-size: 1em; }
+    .banner-description { font-size: 0.9em; }
+    .banner-cta-button { padding: 15px 35px; font-size: 1.2em; }
+
+    .banner-visual-area {
+       
+        margin-top: 30px;
+    }
+    .visual-element.visual-circle-1 { width: 90px; height: 90px; }
+    .visual-element.visual-square-2 { width: 70px; height: 70px; }
+    .visual-element.visual-triangle-3 {
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 70px solid;
+    }
+    .visual-element.visual-line-4 { width: 100px; }
+
+    .banner-inner-wrapper {
+    margin-bottom: 20px;
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on smaller screens */
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    gap: 40px; /* Space between text and visual areas */
+    padding: 10px 20px; /* Internal padding */
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Side: Text Content */
+.banner-text-content {
+    flex: 1; /* Takes available space */
+    min-width: 350px; /* Minimum width before wrapping */
+    max-width: 600px; /* Max width for readability */
+    text-align: left; /* Align text to left */
+    padding: 0px;
+    padding-top: 0px;
+   
+    position: relative;
+    z-index: 2;
+}
+
+.banner-headline {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 3.4em; /* Large and impactful */
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--color-blue-start), var(--color-orange-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: lightblue;
+    background-clip: text;
+    color: transparent;
+    animation: glowBlue 2.5s infinite alternate;
+    letter-spacing: -1.5px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.1; /* Tighter line height */
+}
+
+.banner-course-title {
+    font-size: 2.8em;
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.banner-course-title .sub-line {
+    display: block;
+    font-size: 0.65em;
+    font-weight: 400;
+    color: #b0c4de;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.banner-instructor {
+    font-size: 1.4em;
+    color: #9a9ab9;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.banner-description {
+    font-size: 1.15em;
+    text-align: center;
+    line-height: 1.7;
+    color: var(--color-text-medium);
+    margin-bottom: 35px;
+}
+
+.banner-cta-wrapper {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.banner-cta-button {
+    display: inline-block;
+    text-align: center;
+    background: linear-gradient(45deg, #ff6b6b, #ee2b60); /* Vibrant red/pink gradient for CTA */
+    color: white;
+    padding: 15px 55px; /* Large, inviting button */
+    border-radius: 60px; /* Super rounded */
+    text-decoration: none;
+    font-size: 0.6em; /* Large font for CTA */
+    font-weight: 700;
+    transition: background 0.5s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7); /* Deep shadow */
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-cta-button::before { /* Shine effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-20deg);
+    transition: transform 0.4s ease-out;
+    z-index: 0;
+}
+
+.banner-cta-button:hover::before {
+    transform: skewX(-20deg) translateX(250%);
+}
+
+.banner-cta-button:hover {
+    background: linear-gradient(45deg, #ee2b60, #ff6b6b);
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    animation: none;
+}
+
+.banner-sub-text p {
+    font-size: 1em;
+    text-align: center;
+    color: #ffcc00; /* Yellow for urgency */
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(255, 204, 0, 0.4);
+    opacity: 0.9;
+}
+}
+
+@media (max-width: 480px) {
+    .photoshop-hero-banner-v2 { min-height: 60vh; padding-top: 20px; padding-bottom: 20px; }
+    .banner-inner-wrapper { gap: 20px; }
+    .banner-text-content { max-width: 100%; }
+    .banner-headline { font-size: 2.2em; line-height: 1.2; }
+    .banner-course-title { font-size: 1.5em; }
+    .banner-course-title .sub-line { font-size: 0.6em; }
+    .banner-instructor { font-size: 0.9em; }
+    .banner-description { font-size: 0.85em; margin-bottom: 25px; }
+    .banner-cta-button { padding: 12px 25px; font-size: 1em; }
+    .banner-sub-text p { font-size: 0.8em; }
+
+    .banner-visual-area {
+        
+        margin-top: 0px;
+    }
+    /* Hide some elements or reduce size for very small screens */
+    .visual-element.visual-circle-1,
+    .visual-element.visual-square-2,
+    .visual-element.visual-triangle-3,
+    .visual-element.visual-line-4 {
+        width: 60px; height: 60px; /* General reduction */
+        filter: blur(8px); /* Less blur */
+        opacity: 0.4; /* Less visible */
+    }
+    .visual-element.visual-triangle-3 {
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        border-bottom: 50px solid;
+    }
+    .visual-element.visual-line-4 { width: 80px; }
+}
+    
+</style>
+
+
+
+
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="85">
+
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-new.png" class="img-fluid" alt="logo">
+            </a>
+            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon d-none"></span> <img src="images/icons8-menu.gif" alt="Menu" class="custom-toggler-icon"> </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav menu-navbar-nav"> <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">HOME</a> </li>
+                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            SOLUTIONS <span class="sub-arrow"></span>
+                        </a>
+                        <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown"> <li style="--i: 1"><a class="dropdown-item" href="graphic.html">GRAPHIC DESIGNING SERVICES</a></li>
+                            <li style="--i: 2"><a class="dropdown-item" href="development.html">CUSTOM SOFTWARE, WEB & MOBILE DEVELOPMENT</a></li>
+                            <li style="--i: 3"><a class="dropdown-item" href="graphic.html">DIGITAL MARKETING & PERFORMANCE CAMPAIGNS</a></li>
+                            <li style="--i: 4"><a class="dropdown-item" href="graphic.html">SOCIAL MEDIA MARKETING AGENCY</a></li>
+                            <li style="--i: 5"><a class="dropdown-item" href="graphic.html">ORGANIC SEO SERVICES</a></li>
+                            <li style="--i: 6"><a class="dropdown-item" href="graphic.html">VIDEO PRODUCTION (SOCIAL MEDIA OR AD FILMS)</a></li>
+                            <li style="--i: 7"><a class="dropdown-item" href="graphic.html">WEB HOSTING SEVICES</a></li>
+                            <li style="--i: 8"><a class="dropdown-item" href="graphic.html">PAYMENT GATEWAY SERVICES</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">WHO WE ARE</a>
+                    </li>                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#brands">WORK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="extra.html">INTERNSHIP</a> </li>
+                         <li class="nav-item">
+                        <a class="nav-link" href="#reviews">CAREER</a>
+                    </li> 
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item text-center">
+                        <a class="nav-link learn-more-btn-header" href="internship-form.html"><i class="fa fa-rocket" aria-hidden="true"></i>Enquire Now</a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    <!-- Navbar section exit -->
+
+
+    <!-- Navbar section exit -->
+
+    <!-- Banner section --> 
+
+    <!-- Banner section entry --> 
+
+ <section class="photoshop-hero-banner-v2">
+    <div class="banner-inner-wrapper container">
+        <!-- Left Side: Text Content -->
+        <div class="banner-text-content">
+            <h1 class="banner-headline anim-fade-in-up">Master In-Demand Tech Skills</h1>
+            <h2 class="banner-course-title anim-fade-in-up" style="animation-delay: 0.3s;">
+                Transform Your Future <span class="sub-line">From Novice to Digital Professional</span>
+            </h2>
+            
+
+</p>
+            <p class="banner-description anim-fade-in-up" style="animation-delay: 0.9s;">
+                Explore Web Development, App Development, Graphic Designing, and more. Our expert-led courses equip you with practical skills for today's digital world.
+            </p>
+            <div class="banner-cta-wrapper anim-zoom-in" style="animation-delay: 1.2s;">
+                <a href="#enroll-section" class="banner-cta-button anim-button-pulse">Explore All Courses!</a>
+            </div>
+            <div class="banner-sub-text anim-fade-in-up" style="animation-delay: 1.5s;">
+                <p>Limited seats available for the next batch!</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Animated Visual Area -->
+        <div class="banner-visual-area">
+            <div class="visual-element visual-circle-1 anim-float-scale"></div>
+            <div class="visual-element visual-square-2 anim-float-rotate" style="animation-delay: 0.5s;"></div>
+            <div class="visual-element visual-triangle-3 anim-float-scale" style="animation-delay: 1s;"></div>
+            <div class="visual-element visual-line-4 anim-float-line" style="animation-delay: 1.5s;"></div>
+            
+            <img src="images/post course.jpg" alt="Photoshop Course Visual" class="banner-main-image anim-zoom-in" style="animation-delay: 1.8s;">
+        </div>
+    </div>
+    <!-- Background gradient overlay for the section -->
+    <div class="photoshop-bg-gradient-overlay"></div>
+</section>
+    
+    <!-- banner section exit -->
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    
+                    <span>ADNEX TECHNOLOGIES</span>
+                </div>
+                <p>
+                    Adnex Technologies empowers businesses with cutting-edge digital experiences. We craft innovative web solutions, redefine user interfaces, and amplify your online presence through data-driven strategies.
+                </p>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="websites.html">Web Development</a></li>
+                    <li><a href="services.html">Software Development</a></li>
+                    <li><a href="#">Graphic Designing</a></li>
+                    <li><a href="#">UI/UX Designing</a></li>
+                    <li><a href="#">SEO & Content</a></li>
+                    
+                    
+                </ul>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h3>Get In Touch</h3>
+                <p class="mail">
+                    Mail us: <a href="mailto:adnextechnologies@gmail.com?subject=Adnex%20User">adnextechnologies@gmail.com</a>
+                </p>
+                <p class="support">
+                    Support: <a href="mailto:adnextechnologies@gmail.com?subject=Adnex%20User">adnextechnologies@gmail.com</a>
+                </p>
+                <p class="Visit">
+                    Visit us: Gwalior , Madhya Pradesh, India
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 AdNex Technologies. All Rights Reserved.</p>
+        </div>
+    </footer>
+      
+
+</div>
+
+
+
+<!-- Bootstrap 5 JS CDN Links -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel JS Links-->
+<script src="js/owl/owl.carousel.min.js"></script>
+
+<!-- Custom Js Link -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    speed: 2000, // Smooth transition speed
+    spaceBetween: 30,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    allowTouchMove: true,
+    freeMode: true,
+    freeModeMomentum: false,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1, // ✅ Mobile devices
+      },
+      768: {
+        slidesPerView: 2, // ✅ Tablets
+      },
+      1024: {
+        slidesPerView: 4, // ✅ Small desktops
+      },
+      1280: {
+        slidesPerView: 4, // ✅ Large desktops
+      }
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

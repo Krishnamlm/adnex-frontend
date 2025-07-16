@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<title>AdNex Technology</title>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl/owl.theme.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css"> <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive-style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+
+
+
+
+<style>
+/* --- Contact Section Layout (Adjusted) --- */
+.contact-with-animation {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh;
+    
+    background-image: url("images/bg.png");
+    background-size: cover; /* Ensure background image covers the area */
+    background-position: center;
+    background-repeat: no-repeat;
+    gap: 60px;
+    overflow: hidden;
+    position: relative;
+    /* Removed redundant background animation from here as it's now on ::before */
+}
+
+/* Background animation for the section */
+.contact-with-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-size: 200% 200%;
+    animation: backgroundPan 30s linear infinite alternate;
+    z-index: -1;
+    /* Removed opacity: 0.8 as it's now part of the rgba values */
+}
+
+
+/* Right Side Visuals Container */
+.right-side-visuals {
+    flex: 1;
+    max-width: 550px; /* Control the max width of the animation area */
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    margin-right: 0px;
+    justify-content: center; /* Vertically center them */
+    align-items: center; /* Horizontally center them */
+    gap: 40px; /* Space between each image wrapper */
+    padding: 0px;
+    position: relative;
+    transform-style: preserve-3d; /* For child 3D effects */
+    animation: imageFloatPulse 12s ease-in-out infinite alternate; /* Apply animation to the container */
+    z-index: 2; /* Ensure it's above background elements */
+}
+
+/* Wrapper for each image and its overlay */
+.banner-image-wrapper {
+    width: 100%; /* Take full width of parent */
+    position: relative;
+    margin-left: 30px;
+    display: flex; /* To center the image inside */
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px; /* Apply consistent border-radius */
+    overflow: hidden; /* Important for image overflow */
+}
+
+.banner-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Or 'cover' based on your image's aspect ratio and desired crop */
+    display: block;
+    border-radius: 18px; /* Apply consistent border-radius */
+    transform: translateZ(50px); /* Push image forward in 3D space */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Add a subtle shadow */
+}
+
+/* Optional: Image Overlay Shape (for visual interest) */
+.image-overlay-shape {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(125,211,252,0.3) 0%, rgba(125,211,252,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(20px); /* Slightly in front of image */
+    animation: overlayPulse 6s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1; /* Between container and image */
+}
+
+/* Keep the animations for shapes and general elements */
+@keyframes shapeFloat {
+    0% { transform: translateY(0px) rotate(0deg) scale(1) translateZ(var(--z-index-offset, 0)); }
+    50% { transform: translateY(-15px) rotate(5deg) scale(1.05) translateZ(var(--z-index-offset, 0)); }
+    100% { transform: translateY(0px) rotate(0deg) scale(1) translateZ(var(--z-index-offset, 0)); }
+}
+
+/* Image Pulse Float Animation (applied to .right-side-visuals) */
+@keyframes imageFloatPulse {
+    0% { transform: translateY(0) rotateY(0deg); }
+    30% { transform: translateY(-15px) rotateY(2deg); }
+    70% { transform: translateY(5px) rotateY(-1deg); }
+    100% { transform: translateY(0) rotateY(0deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .contact-with-animation {
+        flex-direction: column;
+        padding: 60px 20px;
+        width: 100%;
+        gap: 50px;
+    }
+    .contact-form-container {
+        max-width: 100%;
+        padding-right: 0;
+        margin-top: 30px;
+    }
+    .right-side-visuals { /* Updated from .animated-images-container */
+        max-width: 100%;
+        margin-top: 20px;
+        flex-direction: row; /* Layout images horizontally on tablets */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center;
+        gap: 20px;
+    }
+    .banner-image-wrapper { /* Updated from .animated-sample */
+        width: 45%; /* Two images per row */
+        height: auto; /* Allow height to adjust to content */
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    .banner-image-wrapper img {
+        transform: none; /* Remove 3D transform on mobile/tablet */
+        animation: none; /* Remove floating animation on mobile/tablet */
+    }
+    .contact-header h1 {
+        font-size: 50px;
+        margin-top: 0px;
+    }
+    .submit-btn {
+        width: 100%;
+    }
+    .image-overlay-shape, .bg-shape {
+        display: none; /* Hide complex elements on mobile for performance/simplicity */
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-header h1 {
+        font-size: 2.2em; /* Adjusted for mobile */
+    }
+    .right-side-visuals { /* Updated */
+        flex-direction: column; /* Stack images vertically again on mobile */
+        gap: 30px;
+    }
+    .banner-image-wrapper { /* Updated */
+        width: 90%; /* Full width on mobile */
+        height: auto;
+    }
+    .service-btn {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-with-animation {
+        padding: 40px 15px;
+    }
+    .contact-header h1 {
+        font-size: 1.7em;
+    }
+    .contact-header .highlight {
+        padding: 8px 16px;
+    }
+    .form-group label {
+        font-size: 0.9em;
+    }
+    .form-group input,
+    .form-group textarea {
+        font-size: 1em;
+    }
+}
+</style>
+
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="85">
+
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo-new.png" class="img-fluid" alt="logo">
+                </a>
+                <button class="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <img src="images/icons8-menu.gif" alt="Menu" width="30" height="30">
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav menu-navbar-nav" style="margin-right: 20px";>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html" style="color: #0a576b;">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown" style="padding-right: 10px;">
+    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0a576b;">
+    SERVICES <span class="sub-arrow"></span>
+</a>
+
+    <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown" style="margin-right: 20px;">
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Graphic Designing</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Custom Software, Web & Mobile Development</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Digital Marketing & Performance Campaigns</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Lead Generation & Outreach</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Brand Strategy & Growth Consultation</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Video Production (Social Media or Ad Films)</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Legal & Accounting Services</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Fractional PM-VA Services</a></li>
+</ul>
+
+
+</li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features" style="color: #0a576b;">WHO WE ARE</a>
+                        </li>                                               
+                        <li class="nav-item">
+                            <a class="nav-link" href="#brands" style="color: #0a576b;">WORK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="extra.html" style="color: #0a576b;">INTERNSHIP</a> </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reviews" style="color: #0a576b;">CAREER</a>
+                        </li> 
+                        
+                    </ul>
+                    <ul class="navbar-nav">
+                        
+                        <li class="nav-item text-center">
+                            <a class="nav-link learn-more-btn" href="internship-form.html"><i class="fa fa-rocket" aria-hidden="true" style="margin-right: 10px; color: yellow";></i>Enquire Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> 
+
+<section class="contact-with-animation">
+    <section class="contact-with-animation" >
+    <div class="contact-form-container" data-aos="fade-up">
+        <div class="contact-header" style="margin: 5px; padding-top: 20px;" >
+            <h1> Ready to initiate your <span class="highlight" style="margin-top: 4px; margin-bottom: 4px;" >business’s next stage</span> <br>of expansion?</h1>
+            <p>We would love to be your Growth Partner</p>
+        </div>
+
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <div class="form-group">
+                <input type="text" id="name" name="name" required placeholder="Your Full Name">
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="email" name="email" required placeholder="Your Email">
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="Phone" name="Phone" required placeholder="Phone Number">
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="city" name="city" required placeholder="Your City">
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="company" name="company" required placeholder="Your Company">
+            </div>
+
+            <div class="services-required">
+                <h3>Services Required</h3>
+                <div class="service-buttons">
+                    <button type="button" class="service-btn" data-service="Branding">Branding</button>
+                    <button type="button" class="service-btn" data-service="Logo Design">Logo Design</button>
+                    <button type="button" class="service-btn" data-service="Brand Identity">Brand Identity</button>
+                    <button type="button" class="service-btn" data-service="Rebranding">Rebranding</button>
+                    <button type="button" class="service-btn" data-service="Product Launch">Product Launch</button>
+                    <button type="button" class="service-btn" data-service="Store Launch">Store Launch</button>
+                    <button type="button" class="service-btn" data-service="PR">PR</button>
+                    <button type="button" class="service-btn" data-service="Photoshoot">Photoshoot</button>
+                    <button type="button" class="service-btn" data-service="Video Production">Video Production</button>
+                    <button type="button" class="service-btn" data-service="SEO">SEO</button>
+                    <button type="button" class="service-btn" data-service="Social Media">Social Media</button>
+                    <button type="button" class="service-btn" data-service="Performance Marketing">Performance Marketing</button>
+                    <button type="button" class="service-btn" data-service="Marketing Automation">Marketing Automation</button>
+                    <button type="button" class="service-btn" data-service="UI/UX">UI/UX</button>
+                    <button type="button" class="service-btn" data-service="Website">Website</button>
+                    <button type="button" class="service-btn" data-service="Influencer Marketing">Influencer Marketing</button>
+                    <button type="button" class="service-btn" data-service="Shopify Store">Shopify Store</button>
+                    <button type="button" class="service-btn" data-service="Mobile/Web app">Mobile/Web app</button>
+                    <button type="button" class="service-btn others-btn" data-service="Others" style="background-color: orange;">Others</button>
+                </div>
+                <input type="hidden" name="Selected Services" id="selectedServices">
+            </div>
+
+            <div class="form-group">
+                <label for="query">Give us a brief about your query *</label>
+                <textarea id="query" name="query" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Enquire Now</button>
+            <input type="hidden" name="access_key" value="6eca66aa-0d23-4277-b41f-093bb723791b">
+            <input type="hidden" name="redirect" href="thank-you.html">
+
+        </form>
+    </div>
+
+</section>
+
+<style>
+    /* --- Base Styles --- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* A modern, clean sans-serif font */
+    line-height: 1.6;
+    background-color: #0d0d0d; /* Slightly darker than your original example for depth */
+    color: #025161; /* Light off-white for text */
+}
+
+/* --- Contact Section Layout --- */
+.contact-with-animation {
+    display: flex;
+    width: 110%;
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh; /* Make section at least full viewport height */
+    padding: 50px 10px; /* Increased padding for more breathing room */
+    background-image: url("images/bg.png");
+    gap: 60px; /* Space between the two columns */
+    overflow: hidden; /* Hide overflow for animations */
+    position: relative; /* For potential absolute positioning of decorative elements */
+}
+
+.contact-form-container {
+    flex: 1;
+    max-width: 600px; /* Limit width of the form for better readability */
+    box-sizing: border-box; /* Include padding in width */
+    /* No explicit background on the container itself to let the main section background show */
+}
+
+/* --- Header Styling --- */
+.contact-header {
+    margin-bottom: 40px;
+    margin-top: 0px;
+}
+
+.contact-header h1 {
+    font-size: 45px; /* Larger, bolder headline */
+    font-weight: 700; /* Bold */
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.contact-header .highlight {
+    background-color: #000000; /* Bright orange for highlight */
+    color: #ffffff; /* Dark text on highlight */
+    padding: 4px 12px;
+    border-radius: 8px; /* Softer rounded corners */
+    display: inline-block; /* Ensures padding and border-radius apply correctly */
+}
+
+.contact-header p {
+    font-size: 1.1em;
+    color: #000000; /* Slightly muted text for description */
+}
+
+/* --- Form Group Styling --- */
+.form-group {
+    margin-bottom: 25px;
+    position: relative; /* For potential label animations/floating */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #000000;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 2px 0; /* Padding only top/bottom for underline effect */
+    border: none;
+    border-bottom: 2px solid #555; /* Subtle grey underline */
+    background-color: transparent;
+    color: #000000;
+    font-size: 1.05em;
+    transition: border-bottom-color 0.3s ease-in-out; /* Smooth transition on focus */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-bottom-color: #036887; /* Orange underline on focus */
+    outline: none; /* Remove default outline */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px; /* Minimum height for textarea */
+}
+
+/* --- Services Required Buttons --- */
+.services-required {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.services-required h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.service-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to next line */
+    gap: 12px; /* Space between buttons */
+}
+
+.service-btn {
+    background-color: #333; /* Darker grey background */
+    color: #ffffff;
+    border: 1px solid #444; /* Slightly lighter border */
+    padding: 10px 20px;
+    border-radius: 25px; /* More rounded, pill-like shape */
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* Prevent text wrapping within button */
+}
+
+.service-btn:hover {
+    background-color: #333;; /* Slightly lighter on hover */
+    border-color: #666;
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.service-btn.selected {
+    background-color: #ff8c00; /* Orange for selected */
+    border-color: #ff8c00;
+    color: #1a1a1a; /* Dark text on selected button */
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.4); /* Subtle shadow for selected */
+}
+
+.others-btn {
+    background-color: #ff8c00; /* Already highlighted */
+    border-color: #ff8c00;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+    background-color: #035765;
+    color: #ffffff; /* Dark text for contrast */
+    padding: 16px 35px; /* Generous padding */
+    border: none;
+    border-radius: 8px; /* Consistent rounded corners */
+    font-size: 1.2em;
+    font-weight: 700; /* Bold text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 30px;
+    margin-left: 190px;
+    width: auto; /* Allow button to size to content */
+    display: block; /* Make it a block element to center or float if needed */
+}
+
+.submit-btn:hover {
+    background-color: #e67e22; /* Slightly darker orange on hover */
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6); /* Stronger hover shadow */
+}
+
+/* --- reCAPTCHA Container --- */
+.recaptcha-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* Adjust as needed for reCAPTCHA widget alignment */
+}
+
+/* --- Animated Images Container (Right Side) --- */
+.animated-images-container {
+    flex: 1;
+    max-width: 550px; /* Control the max width of the animation area */
+    display: flex;
+    flex-direction: column; /* Stack animated samples vertically */
+    justify-content: center; /* Vertically center them */
+    align-items: center; /* Horizontally center them */
+    gap: 40px; /* Space between each animated sample */
+    padding: 20px;
+    position: relative; /* For absolute positioning of effects */
+}
+
+/* --- Animated Sample Placeholders (for design & animation) --- */
+.animated-sample {
+    width: 90%; /* Occupy most of the container width */
+    height: 250px; /* Fixed height for visual consistency */
+    background-color: #2b2b2b; /* Darker grey to represent a 'sample' image */
+    border-radius: 12px; /* Rounded corners for the samples */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+    position: relative;
+    overflow: hidden; /* Hide anything outside the sample */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+    display: flex; /* For potential content inside samples */
+    justify-content: center;
+    align-items: center;
+    color: #bbb;
+    font-size: 1.1em;
+    font-style: italic;
+    opacity: 0; /* Start hidden for fade-in animation */
+    transform: translateY(20px); /* Start slightly below for slide-up */
+    animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+/* Specific animations for each sample */
+.animated-sample.sample-1 {
+    animation: fadeInSlideUp 1s ease-out forwards 0.3s; /* Delay for staggered effect */
+}
+
+.animated-sample.sample-2 {
+    animation: fadeInSlideUp 1s ease-out forwards 0.6s;
+    /* Add a subtle tilt for the middle sample */
+    transform: rotateZ(2deg) translateY(20px); /* Apply initial transform for animation */
+}
+
+.animated-sample.sample-3 {
+    animation: fadeInSlideUp 1s ease-out forwards 0.9s;
+}
+
+/* Keyframes for a subtle fade-in and slide-up effect */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* Start lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at normal position */
+    }
+}
+
+/* Optional: Adding a subtle pulsing glow to samples (could represent activity) */
+@keyframes pulseBorder {
+    0% { border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 rgba(255, 140, 0, 0); }
+    50% { border-color: rgba(255, 140, 0, 0.4); box-shadow: 0 0 15px rgba(255, 140, 0, 0.4); }
+    100% { border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 rgba(255, 140, 0, 0); }
+}
+
+/* Apply pulse animation to samples after they've loaded */
+.animated-sample {
+    animation: fadeInSlideUp 1s ease-out forwards; /* Existing animation */
+    animation-delay: var(--animation-delay, 0s); /* Use CSS variable for delay */
+}
+
+/* Add a continuous background animation for a subtle dynamic feel */
+@keyframes backgroundPan {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.contact-with-animation::before { /* Pseudo-element for background effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+
+    animation: backgroundPan 30s linear infinite alternate; /* Slow, continuous pan */
+    z-index: -1; /* Behind content */
+    opacity: 0.8;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .contact-with-animation {
+        flex-direction: column; /* Stack columns on tablets */
+        padding: 60px 5px;
+        width: 100%;
+        gap: 50px;
+    }
+
+    .contact-form-container {
+        max-width: 100%;
+        padding-right: 0;
+        margin-top: 30px;
+    }
+
+    .animated-images-container {
+        max-width: 100%;
+        margin-top: 20px;
+        flex-direction: row; /* Layout samples horizontally on tablets */
+        flex-wrap: wrap; /* Allow wrapping if too many samples */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .animated-sample {
+        width: 45%; /* Two samples per row */
+        height: 200px;
+        animation: none; /* Disable complex animations for smaller screens if they become distracting */
+        opacity: 1; /* Make visible by default */
+        transform: none; /* Remove initial transform */
+    }
+
+    .contact-header h1 {
+        font-size: 50px;
+        margin-top: 0px;
+        
+    }
+
+    .submit-btn {
+        width: 100%; /* Full width button on smaller screens */
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-header h1 {
+        font-size: 2em;
+    }
+
+    .animated-images-container {
+        flex-direction: column; /* Stack samples vertically again on mobile */
+        gap: 30px;
+    }
+
+    .animated-sample {
+        width: 90%; /* Full width on mobile */
+        height: 180px;
+    }
+
+    .service-btn {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-with-animation {
+        padding: 40px 7px;
+    }
+
+    .contact-header h1 {
+        font-size: 1.7em;
+    }
+
+    .contact-header .highlight {
+        padding: 8px 16px;
+    }
+
+    .form-group label {
+        font-size: 0.9em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 1em;
+    }
+}
+</style>
+
+
+
+<!-- Bootstrap 5 JS CDN Links -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+<script src="js/owl/owl.carousel.min.js"></script>
+
+<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+</body>
+</html>

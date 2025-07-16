@@ -1,0 +1,101 @@
+body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            overflow: hidden; /* Ensures image corners are rounded */
+            opacity: 0; /* Initially hidden for fade-in effect */
+            transform: translateY(20px); /* Initially slightly below for fade-in effect */
+            animation: fadeInSlideUp 0.6s ease-out forwards; /* Fade-in animation */
+        }
+        /* Staggered animation delay for each card */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-image-container {
+            width: 100%;
+            height: 180px; /* Fixed height for consistent image size */
+            overflow: hidden;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            position: relative; /* Needed for text-overlay positioning */
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the area without distortion */
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover .card-image {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+        .text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        /* New dynamic grid style */
+        .dynamic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-fit columns, min width 300px */
+            gap: 2rem; /* Increased gap for better spacing */
+            justify-items: center; /* Center cards within their grid cells */
+        }
+
+        /* Keyframe animation for initial fade-in and slide up */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animations for text content on hover */
+        .card h2, .card p, .card a {
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .card:hover h2 {
+            color: #1a202c; /* Darker text color on hover */
+            transform: translateX(5px); /* Slight slide to the right */
+        }
+        .card:hover p {
+            color: #4a5568; /* Slightly darker grey for paragraph */
+            transform: translateX(3px); /* Slight slide to the right */
+        }
+        .card:hover a {
+            transform: scale(1.02); /* Slightly enlarge the button */
+        }

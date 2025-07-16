@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<title>AdNex Technology</title>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<!-- Bootstrap 5 CDN Links -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Owl Carousel CSS Links-->
+<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl/owl.theme.min.css">
+
+
+
+
+<!-- Custom File's Link -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive-style.css">
+
+<!--footer-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+ <style>
+  html.preload *, html.preload *::before, html.preload *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+</style>
+<script>
+  document.documentElement.classList.add("preload");
+  window.addEventListener("load", () => {
+    document.documentElement.classList.remove("preload");
+  });
+</script>
+
+
+<style>
+    
+
+
+    body {
+  margin: 0;
+ 
+  background-color: #000000;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 0;
+  
+    }
+
+    /* Intro Section */
+    .intro-section {
+      background: linear-gradient(to right, #7edbf5, #e3fafc);
+      padding: 80px 20px 60px;
+    }
+
+    .intro-container {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .intro-container h1 {
+      font-size: 2.8rem;
+      color: #0d47a1;
+      margin-bottom: 20px;
+      margin-top: 30px;
+    }
+
+    .intro-container p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+section.software-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+  opacity: 0;
+  transform: translateY(30px);
+  visibility: hidden;
+  animation: fadeInSection 1.2s ease forwards;
+  animation-delay: 0.3s;
+  transition: all 0.5s ease-in-out;
+}
+
+@keyframes fadeInSection {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+section.software-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #2c3e50;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(135deg, #cdf1fb, #f7faee);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9) translateY(50px);
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+
+.card.visible {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  animation: bounceIn 0.8s ease forwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.95) translateY(30px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.03) translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 150, 136, 0.3);
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  color: #00796b;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #333;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section.software-section h2 {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+     section.software-section h2 {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+  /* Main Footer Container */
+.main-footer {
+    background: linear-gradient(135deg, #101010, #1b1b1b, #101010); /* Subtle gradient background */
+    color: #e0e0e0;
+    padding: 60px 20px 30px; /* Top, horizontal, bottom padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Subtle top border */
+    position: relative;
+    overflow: hidden; /* Hide overflow for animations */
+    animation: backgroundShift 15s ease-in-out infinite alternate; /* Background animation */
+}
+
+/* Keyframe for subtle background gradient shift */
+@keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Inner Container for content alignment */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid layout */
+    gap: 40px; /* Space between columns */
+    padding-bottom: 40px; /* Space above copyright */
+}
+
+/* Footer Section Styling */
+.footer-section {
+    opacity: 0; /* Hidden by default for potential entry animation */
+    transform: translateY(20px); /* Slightly below starting position */
+    animation: sectionFadeIn 0.8s ease forwards; /* Entry animation for sections */
+}
+/* Delay animations for each section */
+.footer-section:nth-child(1) { animation-delay: 0.1s; }
+.footer-section:nth-child(2) { animation-delay: 0.2s; }
+.footer-section:nth-child(3) { animation-delay: 0.3s; }
+.footer-section:nth-child(4) { animation-delay: 0.4s; }
+
+/* Keyframe for section entry animation */
+@keyframes sectionFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Footer Logo & About Section */
+.footer-about .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.footer-about .footer-logo svg {
+    width: 45px;
+    height: 45px;
+    margin-right: 12px;
+    transition: transform 0.4s ease; /* Smooth rotation on hover */
+}
+.footer-about .footer-logo span {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Logo hover animation */
+.footer-about .footer-logo:hover svg {
+    transform: rotate(360deg);
+}
+
+.footer-about p {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #c0c0c0;
+}
+
+/* Section Headings */
+.footer-section h3 {
+    font-size: 1.3em;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 600;
+    position: relative;
+}
+.footer-section h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #00BCD4; /* Accent color for underline */
+    margin-top: 8px;
+    border-radius: 2px;
+    transition: width 0.3s ease-out; /* Animation for underline */
+}
+.footer-section:hover h3::after {
+    width: 70px; /* Expand underline on hover over section */
+}
+
+/* Link Lists */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links ul li {
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden; /* For underline animation */
+}
+.footer-links ul li a {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s ease; /* Smooth color change */
+    display: inline-block;
+    position: relative;
+    padding-bottom: 2px; /* Space for pseudo-element underline */
+}
+
+/* Animated Underline for Links */
+.footer-links ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0; /* Starts hidden */
+    height: 2px;
+    background-color: #FFD700; /* Accent color for link underline */
+    transition: width 0.3s ease-out; /* Smooth width expansion */
+}
+.footer-links ul li a:hover {
+    color: #fff; /* White text on hover */
+    transform: translateX(5px); /* Slight slide to the right */
+}
+.footer-links ul li a:hover::after {
+    width: 100%; /* Expands to full width on hover */
+}
+
+/* Contact Section Specifics */
+.footer-contact p {
+    margin-bottom: 15px;
+    color: #c0c0c0;
+    font-size: 0.95em;
+}
+.footer-contact p a {
+    color: #FFD700; /* Accent color for contact links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-contact p a:hover {
+    color: #fff; /* White on hover */
+    text-decoration: underline;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; /* Space between icons */
+}
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* Circular icons */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+    color: #e0e0e0; /* Icon color */
+    font-size: 1.3em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animations */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Social Icon Hover Effects - Brand Colors */
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.05); /* Lift and slightly enlarge */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    color: #fff; /* White icon on hover */
+}
+
+/* Specific brand colors for hover */
+.social-icon:hover.fa-linkedin-in { background-color: #0077B5; }
+.social-icon:hover.fa-instagram { background-color: #E4405F; }
+.social-icon:hover.fa-twitter { background-color: #1DA1F2; }
+.social-icon:hover.fa-youtube { background-color: #FF0000; }
+.social-icon:hover.fa-facebook-f { background-color: #1877F2; }
+
+
+/* Footer Bottom (Copyright) */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle separator */
+    padding-top: 30px;
+    margin-top: 0px;
+    font-size: 0.85em;
+    color: #a0a0a0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        text-align: center;
+    }
+    .footer-section h3::after {
+        margin: 8px auto 0; /* Center underline on smaller screens */
+    }
+    .footer-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px; /* Space between links when wrapped */
+    }
+    .footer-links ul li {
+        margin-bottom: 0; /* Remove vertical margin if wrapping */
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer-section {
+        margin-bottom: 30px; /* Space between stacked sections */
+    }
+    .footer-about .footer-logo {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-footer {
+        padding: 40px 15px 20px;
+    }
+    .footer-container {
+        gap: 30px;
+    }
+    .footer-section h3 {
+        font-size: 1.2em;
+    }
+    .footer-about .footer-logo svg {
+        width: 35px;
+        height: 35px;
+    }
+    .footer-about .footer-logo span {
+        font-size: 1.4em;
+    }
+}
+
+  }
+  
+
+
+
+    
+  </style>
+
+</head>
+<body style="overflow-x: unset;">
+
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo-new.png" class="img-fluid" alt="logo">
+                </a>
+                <button class="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <img src="images/icons8-menu.gif" alt="Menu" width="30" height="30">
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav menu-navbar-nav" style="margin-right: 20px";>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html" style="color: #0a576b;">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown" style="padding-right: 10px;">
+    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0a576b;">
+    SOLUTIONS <span class="sub-arrow"></span>
+</a>
+
+    <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown" style="margin-right: 20px;">
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Graphic Designing</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="development.html">Custom Software, Web & Mobile Development</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Digital Marketing & Performance Campaigns</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Lead Generation & Outreach</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Brand Strategy & Growth Consultation</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Video Production (Social Media or Ad Films)</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Legal & Accounting Services</a></li>
+    <li style="--i: 1"><a class="dropdown-item" href="graphic.html">Fractional PM-VA Services</a></li>
+</ul>
+
+
+</li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features" style="color: #0a576b;">WHO WE ARE</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#brands" style="color: #0a576b;">WORK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="extra.html">INTERNSHIP</a> </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reviews" style="color: #0a576b;">CAREER</a>
+                        </li> 
+                        
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item text-center">
+                            <a class="nav-link learn-more-btn" href="internship-form.html"><i class="fa fa-rocket" aria-hidden="true" style="margin-right: 10px; color: yellow";></i>Enquire Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>  
+    <!-- Navbar section exit -->
+
+  <!-- INTRO SECTION -->
+  <section class="intro-section">
+    <div class="intro-container" data-aos="fade-up" data-aos-duration="1000">
+      <h1 data-aos="fade-down" data-aos-delay="100">Welcome to Our Digital Website Solutions</h1>
+      <p data-aos="fade-up" data-aos-delay="300">
+        We specialize in crafting intuitive, reliable, and scalable websites and web applications for educational institutions and healthcare providers. Our solutions streamline operations, improve data management, and elevate user experience online.
+      </p>
+      <p data-aos="fade-up" data-aos-delay="500">
+        From college portals to clinic scheduling, we build tailored web tools to simplify your digital presence and processes. Discover the power of modern web automation and data intelligence with us.
+      </p>
+    </div>
+  </section>
+ 
+
+ <section class="software-section" style="background-image: linear-gradient(rgb(1, 38, 48) , rgb(3, 98, 114));">
+    <h2 style="color: skyblue;">Our Website Solutions</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="images/SCHOOL.png" alt="School Management">
+        <h3>School Website</h3>
+        <p>An engaging homepage with updates, registration, and contact tools; detailed organizational info and leadership; a motivational Chairman’s message; verified affiliation documents; and secure bank details for seamless transactions.</p>
+      </div>
+      <div class="card">
+        <img src="images/examination.png" alt="College Management">
+        <h3>Online Examination Website</h3>
+        <p>Homepage features logo, banner, and welcome. About us shares organization and principal details. View online test info. Students log in, print certificates, and receive important notifications—all in one place.
+
+</p>
+      </div>
+      <div class="card">
+        <img src="images/recharge.png" alt="Accounts Software">
+        <h3>Online Recharge Portal</h3>
+        <p>Launch your recharge portal like RechargeAdda.com From APIs, payment gateway, and backend development to UI design and ads integration—ISPL handles everything you need under one complete, standard service package.</p>
+      </div>
+      <div class="card">
+        <img src="images/photography.png" alt="Fees Record Software">
+        <h3>Photography Website</h3>
+        <p>A photography website showcases portfolios, offers secure client galleries, online bookings, service packages, blog updates, contact forms, and e-commerce for prints—optimized for all devices with social media integration and image proofing.</p>
+      </div>
+      <div class="card">
+        <img src="images/tour.png" alt="Inventory Management">
+        <h3>Tours & Travel Website</h3>
+        <p>A tour site with banners, categorized packages, offers, booking form, service listings, testimonials, FAQs, contact details, Google Maps, and feedback—designed to engage users and simplify travel inquiries.</p>
+      </div>
+      <div class="card">
+        <img src="images/real.png" alt="Inventory Management">
+        <h3>Real Estate Website</h3>
+        <p>Website includes logo, about section, services (residential/commercial), project listings, detailed properties, and a customer account portal showing name, contact, and address for efficient real estate browsing and management.</p>
+      </div>
+      <div class="card">
+        <img src="images/restaurat.png" alt="Dental Clinic Software">
+        <h3>Restaurant Website</h3>
+        <p>Includes homepage with logo, search and slider; about section with mission and media; detailed menu; event updates like festivals; and a gallery showcasing event photos and videos for visitors.</p>
+      </div>
+      <div class="card">
+        <img src="images/NGO.png" alt="Dental Clinic Software">
+        <h3>NGO/Foundation/Trust Website</h3>
+        <p>Homepage with logo, slider, welcome message; About with mission, team, and bank details; Services include health, education, livelihood; Event section shows workshops, guests, and celebrity participation.</p>
+      </div>
+      <div class="card">
+        <img src="images/hotel.png" alt="School Management">
+        <h3>Hotel Booking Website</h3>
+        <p>Homepage with logo, slider, login/signup, and search; About includes mission and reviews; Services cover hotel, travel, and rentals; My Account stores user info and booking history.</p>
+      </div>
+      <div class="card">
+        <img src="images/dating.png" alt="College Management">
+        <h3>Dating Portal</h3>
+        <p>Features include homepage, member profiles, search zone, photo albums, chat, success stories, and dynamic admin panel. New users register with personal details, verified by email for secure access.</p>
+      </div>
+      <div class="card">
+        <img src="images/e-commerce.png" alt="Accounts Software">
+        <h3>E-Commerce Website</h3>
+        <p>The ecommerce website features include: Home page with logo and banner; About Us with company details; Product Categories for Browse; Product Details for specific items; and My Account for customer information.</p>
+      </div>
+      <div class="card">
+        <img src="images/college.png" alt="Fees Record Software">
+        <h3>College Website</h3>
+        <p>A college website features: Home page with logo, news, and banner; About Us with organizational details; Staff directory; Online Student Application for form submission and merit list checking; and Student Verification by registration number.</p>
+      </div>
+      <div class="card">
+        <img src="images/job.png" alt="Inventory Management">
+        <h3>Job Portal Website</h3>
+        <p>A Job Portal Website includes: Home page with logo and banner; About Us with organizational vision; Online Job Search for visitors; Student Login/Registration for members; and Employer Registration, facilitating comprehensive job search and recruitment functionalities.</p>
+      </div>
+      <div class="card">
+        <img src="images/result.png" alt="Inventory Management">
+        <h3>Online Result Software</h3>
+        <p>Online Result Software has Pin Manager for student/admin logins. Admin/School section allows managing sessions, classes, subjects, school info, and student data (add, edit, delete, export, exam scores).</p>
+      </div>
+      <div class="card">
+        <img src="images/blog.png" alt="Dental Clinic Software">
+        <h3>Blog Website</h3>
+        <p>Average blog websites typically feature: a home page displaying recent posts, categorized content, search functionality, individual post pages with comments, social sharing buttons, and an "about" section. Many include author bios, subscribe options, and basic SEO.</p>
+      </div>
+      <div class="card">
+        <img src="images/e-book.png" alt="Dental Clinic Software">
+        <h3>E-Book Download Website</h3>
+        <p> An e-book website features: a searchable library, categorized books, author information, cover images, summaries, user reviews, and download links. It often includes user accounts for managing downloads and wishlists.</p>
+      </div>
+    </div>
+  </section>
+
+      <!-- Footer section -->
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#00BCD4" stroke-width="1.5"/>
+                        <path d="M9 9L15 15M15 9L9 15" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>ADNEX TECHNOLOGIES</span>
+                </div>
+                <p>
+                    Adnex Technologies empowers businesses with cutting-edge digital experiences. We craft innovative web solutions, redefine user interfaces, and amplify your online presence through data-driven strategies.
+                </p>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="websites.html">Web Development</a></li>
+                    <li><a href="services.html">Software Development</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">SEO & Content</a></li>
+                    <li><a href="#">Cloud Solutions</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h3>Get In Touch</h3>
+                <p>
+                    Mail us: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJTKWVNMFvXGTxlhXDjmGstXkvKcLrJdXHvVZzKgjhXmNHSTHjpJKkmVlsBVxLnCfHSVRQB">info@adnextechnologies.in</a>
+                </p>
+                <p>
+                    Support: <a href="mailto:krishnaphotoshop85@gmail.com">support@adnextechnologies.in</a>
+                </p>
+                <p>
+                    Visit us: Gwalior , Madhya Pradesh, India
+                </p>
+
+                <div class="social-icons">
+                    <a href="#" class="social-icon" target="_blank" aria-label="LinkedIn"><img src="images/linkedin.png" alt="linkedin" style="width: 50px;"></a>
+                    <a href="#" class="social-icon" target="_blank" aria-label="Instagram"><img src="images/instagram.png" alt="instagram" style="width: 50px;"></i></a>
+                    <a href="#" class="social-icon" target="_blank" aria-label="Twitter"><img src="images/twitter.png" alt="twitter" style="width: 50px;"></a>
+                    <a href="#" class="social-icon" target="_blank" aria-label="YouTube"><img src="images/youtube.png" alt="youtube" style="width: 50px;"></a>
+                    <a href="#" class="social-icon" target="_blank" aria-label="Facebook"><img src="images/facebook.png" alt="facebook" style="width: 50px;"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 AdNex Technologies. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+ <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  </script>
+
+   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,       // animation only once
+      duration: 1000,    // default duration
+      easing: 'ease-in-out',
+    });
+
+    // Optional scroll fix to force repaint
+window.scrollTo(0, 1);
+setTimeout(() => window.scrollTo(0, 0), 10);
+
+
+  </script>
+
+  
+
+  <!-- Bootstrap 5 JS CDN Links -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel JS Links-->
+<script src="js/owl/owl.carousel.min.js"></script>
+
+
+<!-- Custom Js Link -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
