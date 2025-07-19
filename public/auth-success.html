@@ -44,41 +44,38 @@
     </div>
 
     <script>
-        // CRITICAL: Replace with your actual backend URL
+        // CRITICAL: Replace with your actual backend URL (e.g., from process.env.BACKEND_URL)
         const BACKEND_API_URL = 'https://api.adnextechnologies.in';
+        // CRITICAL: Replace with your actual frontend URL (e.g., from process.env.FRONTEND_URL)
+        const FRONTEND_BASE_URL = 'https://adnextechnologies.in'; // Your main frontend domain
 
-        // Function to make an authenticated request
-        async function redirectToProtectedPage() {
+        async function redirectToMainPage() {
             try {
-                // Attempt to fetch a protected resource from the backend.
-                // IMPORTANT: 'credentials: "include"' is crucial here to send cookies.
-                const response = await fetch(`${BACKEND_API_URL}/contact`, {
+                // 1. First, make a request to a protected backend endpoint to verify the session.
+                // The '/auth/status' endpoint is perfect for this, as it just confirms auth status.
+                const response = await fetch(`${BACKEND_API_URL}/auth/status`, {
                     method: 'GET',
-                    credentials: 'include' // This tells the browser to send cookies
+                    credentials: 'include' // Crucial to send cookies
                 });
 
                 if (response.ok) {
-                    // If the response is OK (status 200), it means the session cookie was sent
-                    // and recognized, and the user is authenticated.
-                    console.log('Successfully accessed protected page on backend.');
-                    window.location.href = `${BACKEND_API_URL}/contact`; // Redirect to the actual protected page URL
-                } else if (response.status === 302 || response.status === 401 || response.status === 403) {
-                    // If the backend redirects (e.g., to /auth/login) or sends 401/403,
-                    // it means authentication failed even with the cookie attempt.
-                    console.error('Authentication failed or redirect detected:', response.status);
-                    window.location.href = '/login.html?login=failed_session'; // Redirect to frontend login with an error
+                    // 2. If the backend confirms authentication, redirect to the main frontend page.
+                    console.log('Backend session confirmed. Redirecting to main frontend page.');
+                    window.location.href = FRONTEND_BASE_URL; // Redirect to the root of your frontend
                 } else {
-                    console.error('Unexpected response from backend:', response.status);
-                    window.location.href = '/login.html?login=error'; // Generic error
+                    // 3. If the backend indicates not authenticated (e.g., 302 to login, 401, 403),
+                    // redirect back to the frontend login page.
+                    console.error('Authentication failed or redirect detected by backend:', response.status);
+                    window.location.href = `${FRONTEND_BASE_URL}/login.html?login=failed_session`;
                 }
             } catch (error) {
-                console.error('Network or fetch error during protected page access:', error);
-                window.location.href = '/login.html?login=network_error'; // Redirect on network error
+                console.error('Network or fetch error during authentication check:', error);
+                window.location.href = `${FRONTEND_BASE_URL}/login.html?login=network_error`;
             }
         }
 
         // Execute the function when the page loads
-        document.addEventListener('DOMContentLoaded', redirectToProtectedPage);
+        document.addEventListener('DOMContentLoaded', redirectToMainPage);
     </script>
 </body>
 </html>
