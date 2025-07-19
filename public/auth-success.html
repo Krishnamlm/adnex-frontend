@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Success</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h1>Logging you in...</h1>
+        <p>Please wait while we secure your connection.</p>
+    </div>
+
+    <script>
+        // CRITICAL: Replace with your actual backend URL
+        const BACKEND_API_URL = 'https://api.adnextechnologies.in';
+
+        // Function to make an authenticated request
+        async function redirectToProtectedPage() {
+            try {
+                // Attempt to fetch a protected resource from the backend.
+                // IMPORTANT: 'credentials: "include"' is crucial here to send cookies.
+                const response = await fetch(`${BACKEND_API_URL}/contact`, {
+                    method: 'GET',
+                    credentials: 'include' // This tells the browser to send cookies
+                });
+
+                if (response.ok) {
+                    // If the response is OK (status 200), it means the session cookie was sent
+                    // and recognized, and the user is authenticated.
+                    console.log('Successfully accessed protected page on backend.');
+                    window.location.href = `${BACKEND_API_URL}/contact`; // Redirect to the actual protected page URL
+                } else if (response.status === 302 || response.status === 401 || response.status === 403) {
+                    // If the backend redirects (e.g., to /auth/login) or sends 401/403,
+                    // it means authentication failed even with the cookie attempt.
+                    console.error('Authentication failed or redirect detected:', response.status);
+                    window.location.href = '/login.html?login=failed_session'; // Redirect to frontend login with an error
+                } else {
+                    console.error('Unexpected response from backend:', response.status);
+                    window.location.href = '/login.html?login=error'; // Generic error
+                }
+            } catch (error) {
+                console.error('Network or fetch error during protected page access:', error);
+                window.location.href = '/login.html?login=network_error'; // Redirect on network error
+            }
+        }
+
+        // Execute the function when the page loads
+        document.addEventListener('DOMContentLoaded', redirectToProtectedPage);
+    </script>
+</body>
+</html>
