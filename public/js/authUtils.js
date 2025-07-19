@@ -1,116 +1,108 @@
-// adnex-backend/public/js/authUtils.js
+// adnex-backend/public/js/authUtils.js  <-- REMEMBER: This file MUST be in your FRONTEND project
+// Renaming path to reflect its correct location in your project
+// frontend/js/authUtils.js
+
+const BACKEND_API_URL = "https://adnex-backend.onrender.com"; // Define your backend URL here
 
 /**
- * Makes an authenticated fetch request to a protected backend URL.
- * If authentication fails, redirects to the login page.
- * @param {string} url The URL to fetch (e.g., '/graphic-html')
- * @returns {Promise<Response>} A promise that resolves with the fetch Response object.
+ * Verifies the JWT token's validity by making a lightweight call to the backend.
+ * Redirects to login if token is invalid or missing.
+ * @returns {Promise<boolean>} True if token is valid, false otherwise (after redirecting).
  */
-async function fetchProtected(url) {
+async function verifyTokenWithBackend() {
     const token = localStorage.getItem('jwtToken');
 
     if (!token) {
-        // No token found, redirect to login
-        console.warn('No JWT token found in localStorage. Redirecting to login.');
-        window.location.href = '/login.html?login=required';
-        // Throw an error or return a rejected promise to stop further execution
-        throw new Error('Authentication required.');
+        console.warn('No JWT token found. Redirecting to login.');
+        window.location.href = '/login.html?login=required'; // Redirect on frontend
+        return false;
     }
 
     try {
-        const response = await fetch(url, {
-            method: 'GET', // Or 'POST', 'PUT', etc. depending on the API call
+        const response = await fetch(`${BACKEND_API_URL}/auth/status`, {
+            method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Accept': 'text/html, application/json' // Indicate what type of content is expected
+                'Authorization': `Bearer ${token}`
             }
         });
 
-        // Check for unauthorized or forbidden responses
+        if (response.status === 200) {
+            // Token is valid based on backend check
+            return true;
+        } else if (response.status === 401 || response.status === 403) {
+            console.error('Token invalid or expired. Status:', response.status);
+            localStorage.removeItem('jwtToken'); // Clean up invalid token
+            window.location.href = '/login.html?login=expired'; // Redirect on frontend
+            return false;
+        } else {
+            console.error('Backend token verification failed with status:', response.status);
+            window.location.href = '/login.html?login=verification_error'; // Generic error
+            return false;
+        }
+    } catch (error) {
+        console.error('Network error during token verification:', error);
+        window.location.href = '/login.html?login=network_error'; // Redirect on frontend
+        return false;
+    }
+}
+
+
+/**
+ * Makes an authenticated fetch request to a protected backend API URL.
+ * Designed for fetching DATA from the backend.
+ * @param {string} apiPath The API path to fetch (e.g., '/api/users', '/api/protected-data')
+ * @param {object} options Fetch options (method, body, etc.)
+ * @returns {Promise<Response>} A promise that resolves with the fetch Response object.
+ */
+async function fetchAuthenticatedApi(apiPath, options = {}) {
+    const token = localStorage.getItem('jwtToken');
+
+    if (!token) {
+        console.warn('No JWT token found for API request. Redirecting to login.');
+        window.location.href = '/login.html?login=required';
+        throw new Error('Authentication required for API.');
+    }
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        ...options.headers // Merge any custom headers
+    };
+
+    try {
+        const response = await fetch(`${BACKEND_API_URL}${apiPath}`, {
+            ...options, // Spread existing options
+            headers: headers
+        });
+
         if (response.status === 401 || response.status === 403) {
-            console.error('JWT authentication failed for URL:', url, 'Status:', response.status);
-            localStorage.removeItem('jwtToken'); // Token is invalid/expired, remove it
+            console.error('JWT authentication failed for API:', apiPath, 'Status:', response.status);
+            localStorage.removeItem('jwtToken');
             window.location.href = '/login.html?login=expired';
-            throw new Error('Invalid or expired token. Redirecting to login.');
+            throw new Error('Invalid or expired token for API. Redirecting to login.');
         }
 
-        // For successful responses, return the response object
-        return response;
+        return response; // Return the response object for further handling (e.g., response.json())
 
     } catch (error) {
-        console.error('Network or other error during authenticated fetch:', error);
-        // This catch block handles network errors, not HTTP error statuses like 401/403
-        window.location.href = '/login.html?login=network_error';
+        console.error('Network or other error during authenticated API fetch:', error);
+        window.location.href = '/login.html?login=api_network_error';
         throw error;
     }
 }
 
 // Function to handle logout from the frontend
 function logoutUser() {
-    localStorage.removeItem('jwtToken'); // Remove JWT from local storage
-    // You might also want to hit the backend /auth/logout endpoint if it clears sessions
-    // or does other server-side cleanup, but for pure JWT, removing the token is enough.
-    fetch('/auth/logout', { method: 'GET' }) // Clear server-side session
+    localStorage.removeItem('jwtToken');
+    // Call backend logout endpoint if it performs server-side cleanup (e.g., clearing session)
+    fetch(`${BACKEND_API_URL}/auth/logout`, { method: 'GET' })
         .then(() => {
-            window.location.href = '/login.html?loggedout=true'; // Redirect to login page
+            window.location.href = '/login.html?loggedout=true';
         })
         .catch(error => {
-            console.error('Error during logout:', error);
-            // Even if logout request fails, clear token and redirect
+            console.error('Error during logout backend call:', error);
+            // Even if backend logout fails, ensure client-side logout
             window.location.href = '/login.html?loggedout=true';
         });
 }
 
-// Attach logoutUser to a global property or specific element if needed
-// Example: window.logoutUser = logoutUser;
-
-
-// ... (existing fetchProtected and logoutUser functions) ...
-
-// Intercept clicks on specific protected links
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all links that point to your protected HTML routes
-    const protectedLinkSelectors = [
-        'a[href="/graphic-html"]',
-        'a[href="/internship-form"]',
-        'a[href="/contact"]',
-        'a[href="/development-html"]',
-        'a[href="/digital-html"]'
-    ];
-    const protectedLinks = document.querySelectorAll(protectedLinkSelectors.join(', '));
-
-    protectedLinks.forEach(link => {
-        link.addEventListener('click', async (event) => {
-            event.preventDefault(); // Prevent default browser navigation
-
-            const targetUrl = link.getAttribute('href');
-
-            try {
-                // Attempt to fetch the protected page.
-                // fetchProtected handles token check and redirects if unauthorized.
-                const response = await fetchProtected(targetUrl);
-
-                if (response.ok) {
-                    // If the fetch was successful, it means the token was valid.
-                    // Now, perform the actual browser navigation.
-                    // The backend will receive this new GET request for the HTML,
-                    // and since the user should now be considered authenticated (implicitly via valid token),
-                    // the backend will serve the HTML content.
-                    window.location.href = targetUrl;
-                }
-                // No need for else-if for 401/403, as fetchProtected already handles redirects in those cases.
-
-            } catch (error) {
-                // This catch handles errors thrown by fetchProtected (e.g., "Authentication required.")
-                // No need for further redirect here as fetchProtected already does it.
-                console.error('Error during protected link navigation:', error);
-            }
-        });
-    });
-
-    // Example: Attach logout function to a logout button/link
-    const logoutButton = document.getElementById('logout-button'); // Assuming you have a button with id="logout-button"
-    if (logoutButton) {
-        logoutButton.addEventListener('click', logoutUser);
-    }
-});
+// Ensure this file is loaded before main.js if main.js uses these functions.
