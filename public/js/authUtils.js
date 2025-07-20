@@ -2,7 +2,7 @@
 // Renaming path to reflect its correct location in your project
 // frontend/js/authUtils.js
 
-const BACKEND_API_URL = "https://adnex-backend.onrender.com"; // Define your backend URL here
+const BACKEND_API_URL = "https://your-railway-backend-url.up.railway.app"; // Replace with your actual Railway URL
 
 /**
  * Verifies the JWT token's validity by making a lightweight call to the backend.
